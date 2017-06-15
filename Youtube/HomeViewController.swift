@@ -14,7 +14,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidLoad()
 
         navigationController?.title = "Home"
-        collectionView?.backgroundColor = UIColor.blue
+        collectionView?.backgroundColor = UIColor.green
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
     }
     
@@ -34,4 +34,23 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         return CGSize(width: view.frame.width, height: 200)
     }
+}
+
+
+extension UIView {
+    
+    func addConstraintsWithFormat(format: String, views: [UIView]) {
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionary[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+    }
+    
+    
+    
+    
 }
